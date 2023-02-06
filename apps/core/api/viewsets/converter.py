@@ -14,9 +14,24 @@ class ConverterView(APIView):
     @extend_schema(
         description="Endpoint para converter moedas.",
         parameters=[
-            OpenApiParameter(name="from", type=str, required=True, location=OpenApiParameter.QUERY),
-            OpenApiParameter(name="to", type=str, required=True, location=OpenApiParameter.QUERY),
-            OpenApiParameter(name="amount", type=float, required=True, location=OpenApiParameter.QUERY),
+            OpenApiParameter(
+                name="from",
+                type=str,
+                required=True,
+                location=OpenApiParameter.QUERY,
+                description="Moeda de origem",
+                default="USD",
+            ),
+            OpenApiParameter(
+                name="to", type=str, required=True, location=OpenApiParameter.QUERY, description="Moeda de destino"
+            ),
+            OpenApiParameter(
+                name="amount",
+                type=float,
+                required=True,
+                location=OpenApiParameter.QUERY,
+                description="Valor a ser convertido",
+            ),
         ],
         responses={
             HTTP_200_OK: inline_serializer(
@@ -36,10 +51,10 @@ class ConverterView(APIView):
     )
     def get(self, request):
         try:
-
             from_currency = request.query_params.get("from").upper()
             to_currency = request.query_params.get("to").upper()
-            amount = request.query_params.get("amount")
+            amount = float(request.query_params.get("amount"))
             return Response(convert_service(from_currency, to_currency, amount), status=HTTP_200_OK)
-        except Exception:
+        except Exception as e:
+            print(e)
             return Response({"error": DEFAULT_ERROR_MESSAGE}, status=HTTP_400_BAD_REQUEST)

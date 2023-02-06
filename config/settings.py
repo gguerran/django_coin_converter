@@ -82,3 +82,11 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Django Converter API",
+    "DESCRIPTION": "API de conversão de moedas desenvolvida em Django.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "CONTACT": {"name": "Gustavo Guerra", "email": "gustavoguerra.gr@gmail.com"},
+}
