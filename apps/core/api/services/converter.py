@@ -6,8 +6,8 @@ def convert_service(from_currency, to_currency, amount):
         f"https://api.exchangerate.host/convert?from={from_currency}&to={to_currency}&amount={amount}"
     ).json()
     return {
-        "from": from_currency.upper(),
-        "to": to_currency.upper(),
+        "from": from_currency,
+        "to": to_currency,
         "amount": amount,
         "converted": response["result"],
         "date": response["date"],

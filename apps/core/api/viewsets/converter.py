@@ -35,10 +35,11 @@ class ConverterView(APIView):
         },
     )
     def get(self, request):
-        from_currency = request.query_params.get("from")
-        to_currency = request.query_params.get("to")
-        amount = request.query_params.get("amount")
         try:
+
+            from_currency = request.query_params.get("from").upper()
+            to_currency = request.query_params.get("to").upper()
+            amount = request.query_params.get("amount")
             return Response(convert_service(from_currency, to_currency, amount), status=HTTP_200_OK)
         except Exception:
             return Response({"error": DEFAULT_ERROR_MESSAGE}, status=HTTP_400_BAD_REQUEST)
