@@ -17,9 +17,14 @@ Abaixo estão descritas as informações sobre o funcionamento e o consumo da me
     git clone https://github.com/gguerran/django_coin_converter.git
 
 ## Instalação
-Não é necessário instalar a mesma, desde que o `Docker` e o `docker-compose` estejam instalados. Caso não estejam, siga as seguintes instruções:
- ```
+Não é necessário instalar a mesma, desde que o `Docker` e o `docker-compose` estejam instalados, apenas criar o .env:
+```
+cp example.env .env
+```
+Caso não estejam, siga as seguintes instruções:
+```
 cd django_coin_converter
+cp example.env .env
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
